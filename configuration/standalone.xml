@@ -131,8 +131,8 @@
         <subsystem xmlns="urn:jboss:domain:bean-validation:1.0"/>
         <subsystem xmlns="urn:jboss:domain:datasources:4.0">
             <datasources>
-			<datasource jndi-name="java:jboss/${env.OPENSHIFT_MYSQL_DATASOURCE}" enabled="true" use-java-context="true" pool-name="${env.OPENSHIFT_MYSQL_DATASOURCE}" use-ccm="true">
-                    <connection-url>jdbc:mysql://${env.OPENSHIFT_MYSQL_DB_HOST}:${env.OPENSHIFT_MYSQL_DB_PORT}/${env.OPENSHIFT_MYSQL_DB_NAME}</connection-url>
+		<datasource jndi-name="java:jboss/${env.OPENSHIFT_MYSQL_DATASOURCE}" enabled="true" use-java-context="true" pool-name="${env.OPENSHIFT_MYSQL_DATASOURCE}" use-ccm="true">
+                    <connection-url>jdbc:mysql://${env.OPENSHIFT_MYSQL_DB_HOST}:${env.OPENSHIFT_MYSQL_DB_PORT}//${env.OPENSHIFT_MYSQL_DB_NAME}</connection-url>
                     <driver>mysql</driver>
                     <security>
                       <user-name>${env.OPENSHIFT_MYSQL_DB_USERNAME}</user-name>
