@@ -132,7 +132,7 @@
         <subsystem xmlns="urn:jboss:domain:datasources:4.0">
             <datasources>
 		<datasource jndi-name="java:jboss/paccs" enabled="true" use-java-context="true" pool-name="paccs" use-ccm="true">
-                    <connection-url>jdbc:mysql://paccs-123:3306//paccs</connection-url>
+                    <connection-url>${env.OPENSHIFT_MYSQL_DB_URL}</connection-url>
                     <driver>mysql</driver>
                     <security>
                       <user-name>${env.OPENSHIFT_MYSQL_DB_USERNAME}</user-name>
