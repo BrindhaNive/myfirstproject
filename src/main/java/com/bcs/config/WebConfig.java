@@ -24,7 +24,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	public DriverManagerDataSource dataSource() {
 		DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
 		driverManagerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		driverManagerDataSource.setUrl("jdbc:mysql://localhost:36523/BCS");
+		driverManagerDataSource.setUrl("jdbc:mysql://localhost:36523/PACS");
 		driverManagerDataSource.setUsername("suday");
 		driverManagerDataSource.setPassword("Infy$123");
 		return driverManagerDataSource;
