@@ -1,4 +1,4 @@
-package com.bcs.constants;
+package com.epyloc.pacs.constants;
 
 public enum RolesEnum {
 	

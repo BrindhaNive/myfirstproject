@@ -1,4 +1,4 @@
-package com.bcs.web.controller;
+package com.epyloc.pacs.web.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;

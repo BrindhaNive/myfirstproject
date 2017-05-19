@@ -1,4 +1,4 @@
-package com.bcs.config.initializer;
+package com.epyloc.pacs.config.initializer;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

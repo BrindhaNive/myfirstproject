@@ -1,10 +1,10 @@
-package com.bcs.web.values;
+package com.epyloc.pacs.web.values;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bcs.constants.PrivilegeEnum;
-import com.bcs.constants.RolesEnum;
+import com.epyloc.pacs.constants.PrivilegeEnum;
+import com.epyloc.pacs.constants.RolesEnum;
 
 public class UserRole {
 

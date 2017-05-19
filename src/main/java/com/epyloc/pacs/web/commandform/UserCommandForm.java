@@ -1,6 +1,6 @@
-package com.bcs.web.commandform;
+package com.epyloc.pacs.web.commandform;
 
-import com.bcs.web.values.PACSPortalUser;
+import com.epyloc.pacs.web.values.PACSPortalUser;
 
 public class UserCommandForm {
 

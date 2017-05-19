@@ -1,8 +1,8 @@
-package com.bcs.config.initializer;
+package com.epyloc.pacs.config.initializer;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import com.bcs.config.WebConfig;
+import com.epyloc.pacs.config.WebConfig;
 
 public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 

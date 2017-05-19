@@ -1,4 +1,4 @@
-package com.bcs.config;
+package com.epyloc.pacs.config;
 
 import javax.sql.DataSource;
 

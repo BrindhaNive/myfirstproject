@@ -1,6 +1,6 @@
-package com.bcs.web.values;
+package com.epyloc.pacs.web.values;
 
-import com.bcs.constants.PrivilegeEnum;
+import com.epyloc.pacs.constants.PrivilegeEnum;
 
 public class PACSPortalUser {
 	

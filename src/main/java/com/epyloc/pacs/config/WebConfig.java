@@ -1,4 +1,4 @@
-package com.bcs.config;
+package com.epyloc.pacs.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -17,7 +17,7 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableWebMvc
 @EnableScheduling
 @EnableAsync
-@ComponentScan("com.bcs")
+@ComponentScan("com.epyloc")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Bean(name = "dataSource")
