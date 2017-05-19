@@ -16,13 +16,13 @@ public class MainController {
 
 	private static final Logger logger = Logger.getLogger(MainController.class);
 
-	@RequestMapping(value = "/landing", method = RequestMethod.POST)
+	@RequestMapping(value = "/landing", method = RequestMethod.GET)
 	public ModelAndView defaultPage() {
 
 		ModelAndView model = new ModelAndView();
 		model.addObject("title", "Spring Security Login Form - Database Authentication");
 		model.addObject("message", "This is default page!");
-		model.setViewName("hello");
+		model.setViewName("landing");
 		return model;
 
 	}
