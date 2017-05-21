@@ -188,7 +188,7 @@
 								</div>
 								<div class="tile-footer">
 									<h4>
-										<span class="pct-counter">45.9</span>% decreased 
+										<span class="pct-counter">45.9</span>% decreased
 									</h4>
 									<span>click to see OD accounts</span>
 								</div>
