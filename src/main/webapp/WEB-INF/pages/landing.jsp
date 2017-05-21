@@ -480,7 +480,6 @@ select:-moz-focusring {
 	-mz-transform: rotate(180deg);
 }
 
-
 .headcount-table>thead>tr>th, .headcount-table>thead>tr>th {
 	border-bottom-width: 1px;
 }
