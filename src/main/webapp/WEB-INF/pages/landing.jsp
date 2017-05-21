@@ -484,6 +484,7 @@ select:-moz-focusring {
 	border-bottom-width: 1px;
 }
 
+
 .headcount-table thead tr th, .headcount-table thead tr td {
 	text-align: center;
 }
