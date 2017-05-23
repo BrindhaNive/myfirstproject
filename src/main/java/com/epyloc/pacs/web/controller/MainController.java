@@ -79,5 +79,16 @@ public class MainController {
 		return model;
 
 	}
+	
+	@RequestMapping(value = "/deposit", method = RequestMethod.GET)
+	public ModelAndView depositPage() {
+
+		ModelAndView model = new ModelAndView();
+		model.addObject("title", "Deposits");
+		model.addObject("message", "This is deposits page!");
+		model.setViewName("deposit");
+		return model;
+
+	}
 
 }

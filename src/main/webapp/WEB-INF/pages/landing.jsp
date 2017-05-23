@@ -54,7 +54,7 @@
 
 								<li class="vplist-menu"><a><i class="fa fa-group"></i> Deposit <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
-										<li><a href="dashboard.html">Fixed Account</a></li>
+										<li><a href="deposit">Account opening</a></li>
 									</ul></li>
 							</ul>
 						</div>
