@@ -1,6 +1,9 @@
 package com.epyloc.pacs.web.controller;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,11 +14,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.epyloc.pacs.mappers.RoleMaper;
+import com.epyloc.pacs.web.values.Role;
+
 @Controller
 public class MainController {
 
 	private static final Logger logger = Logger.getLogger(MainController.class);
-
+	@Autowired
+	public SqlSessionFactory sessionFactory;
 	@RequestMapping(value = "/landing", method = RequestMethod.GET)
 	public ModelAndView defaultPage() {
 
@@ -82,7 +89,10 @@ public class MainController {
 	
 	@RequestMapping(value = "/deposit", method = RequestMethod.GET)
 	public ModelAndView depositPage() {
-
+		SqlSession session = sessionFactory.openSession();
+		RoleMaper maper = session.getMapper(RoleMaper.class);
+		Role role = maper.selectRole(1);
+		System.out.println(role.getRole());
 		ModelAndView model = new ModelAndView();
 		model.addObject("title", "Deposits");
 		model.addObject("message", "This is deposits page!");

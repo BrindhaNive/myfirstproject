@@ -102,8 +102,53 @@
 											<div class="col-md-12" id="main">
 												<!-- Selects -->
 												<div class="panel panel-primary">
-													<div class="panel-heading">Depoit type</div>
-													<div class="panel-body">Panel content</div>
+													<div class="panel-heading" id="basepanel">
+															<h4 class="panel-title">
+																 Deposits
+															</h4>
+														</div>
+													<div class="panel-body">
+														<!-- TO DO : Replace with Spring form -->
+														<form class="form-horizontal">
+															<fieldset>
+																<!-- Search input-->
+																<div class="form-group">
+																	<label class="col-md-4 control-label" for="searchinput">Membership ID</label>
+																	<div class="col-md-5">
+																		<input id="searchinput" name="searchinput" type="search" placeholder="Enter name or membership ID" class="form-control input-md" required="">
+
+																	</div>
+																</div>
+
+																<!-- Select Basic -->
+																<div class="form-group">
+																	<label class="col-md-4 control-label" for="accountType">Account Type</label>
+																	<div class="col-md-5">
+																		<select id="accountType" name="accountType" class="form-control">
+																			<option value="1">Fixed deposit</option>
+																			<option value="2">Recurring deposit</option>
+																			<option value="3">Savings account</option>
+																			<option value="4">Current account</option>
+																		</select>
+																	</div>
+																</div>
+																
+																<div class="form-group">
+																	<label class="col-md-4 control-label" for="schemeType">Scheme Type</label>
+																	<div class="col-md-5">
+																		<select id="schemeType" name="schemeType" class="form-control">
+																			<option value="1">Fixed deposit</option>
+																			<option value="2">Recurring deposit</option>
+																			<option value="3">Savings account</option>
+																			<option value="4">Current account</option>
+																		</select>
+																	</div>
+																</div>
+
+															</fieldset>
+														</form>
+
+													</div>
 												</div>
 
 												<!-- End of Selects -->

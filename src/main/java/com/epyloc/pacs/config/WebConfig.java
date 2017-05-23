@@ -3,9 +3,13 @@ package com.epyloc.pacs.config;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jndi.JndiTemplate;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -21,19 +25,10 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableScheduling
 @EnableAsync
 @ComponentScan("com.epyloc")
+@MapperScan("com.epyloc.pacs.mappers")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
-	/*
-	 * @Bean(name = "dataSource") public DriverManagerDataSource dataSource() {
-	 * DriverManagerDataSource driverManagerDataSource = new
-	 * DriverManagerDataSource();
-	 * driverManagerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
-	 * driverManagerDataSource.setUrl("jdbc:mysql://localhost:36523/PACS");
-	 * driverManagerDataSource.setUsername("suday");
-	 * driverManagerDataSource.setPassword("Infy$123"); return
-	 * driverManagerDataSource; }
-	 */
-
+	
 	@Bean(name = "dataSource")
 	DataSource dataSource() {
 		DataSource dataSource = null;
@@ -45,6 +40,19 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		}
 		return dataSource;
 	}
+	
+	@Bean
+	   public DataSourceTransactionManager transactionManager() {
+	     return new DataSourceTransactionManager(dataSource());
+	   }
+
+	   @Bean
+	   public SqlSessionFactory sqlSessionFactory() throws Exception {
+	     SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+	     sessionFactory.setDataSource(dataSource());
+	     return sessionFactory.getObject();
+	   }
+	
 
 	@Bean
 	public InternalResourceViewResolver viewResolver() {
