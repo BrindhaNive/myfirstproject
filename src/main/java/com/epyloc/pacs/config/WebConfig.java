@@ -28,7 +28,6 @@ import org.springframework.web.servlet.view.JstlView;
 @MapperScan("com.epyloc.pacs.mappers")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
-	
 	@Bean(name = "dataSource")
 	DataSource dataSource() {
 		DataSource dataSource = null;
@@ -40,19 +39,18 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		}
 		return dataSource;
 	}
-	
-	@Bean
-	   public DataSourceTransactionManager transactionManager() {
-	     return new DataSourceTransactionManager(dataSource());
-	   }
 
-	   @Bean
-	   public SqlSessionFactory sqlSessionFactory() throws Exception {
-	     SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-	     sessionFactory.setDataSource(dataSource());
-	     return sessionFactory.getObject();
-	   }
-	
+	@Bean
+	public DataSourceTransactionManager transactionManager() {
+		return new DataSourceTransactionManager(dataSource());
+	}
+
+	@Bean
+	public SqlSessionFactory sqlSessionFactory() throws Exception {
+		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+		sessionFactory.setDataSource(dataSource());
+		return sessionFactory.getObject();
+	}
 
 	@Bean
 	public InternalResourceViewResolver viewResolver() {
