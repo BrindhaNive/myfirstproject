@@ -1,26 +1,57 @@
 package com.epyloc.pacs.web.values;
 
+import com.epyloc.pacs.constants.BankUserStatusEnum;
 import com.epyloc.pacs.constants.PrivilegeEnum;
 
 public class PACSPortalUser {
-	
-	private PACSPortalUser(String role)	{
+
+	private PACSPortalUser(String role) {
 		setUserRole(UserRole.createUserRole(role));
 	}
-	
-	public static PACSPortalUser createNewUser(String role){
+
+	public static PACSPortalUser createNewUser(String role) {
 		return new PACSPortalUser(role);
 	}
 
 	private Integer userId;
 	private String username;
-	private String firstName;
-	private String lastName;
-	private String status;
-	private String emailId;
-	private String designation;
-	private String contactNumber;
+	private String fullName;
+	private BankUserStatusEnum bankUserStatusEnum;
 	private UserRole userRole;
+	private Integer bankId;
+	private Integer associatedAreaId;
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public BankUserStatusEnum getBankUserStatusEnum() {
+		return bankUserStatusEnum;
+	}
+
+	public void setBankUserStatusEnum(BankUserStatusEnum bankUserStatusEnum) {
+		this.bankUserStatusEnum = bankUserStatusEnum;
+	}
+
+	public Integer getBankId() {
+		return bankId;
+	}
+
+	public void setBankId(Integer bankId) {
+		this.bankId = bankId;
+	}
+
+	public Integer getAssociatedAreaId() {
+		return associatedAreaId;
+	}
+
+	public void setAssociatedAreaId(Integer associatedAreaId) {
+		this.associatedAreaId = associatedAreaId;
+	}
 
 	public Integer getUserId() {
 		return userId;
@@ -38,54 +69,6 @@ public class PACSPortalUser {
 		this.username = username;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public String getEmailId() {
-		return emailId;
-	}
-
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
-
-	public String getDesignation() {
-		return designation;
-	}
-
-	public void setDesignation(String designation) {
-		this.designation = designation;
-	}
-
-	public String getContactNumber() {
-		return contactNumber;
-	}
-
-	public void setContactNumber(String contactNumber) {
-		this.contactNumber = contactNumber;
-	}
-
 	public UserRole getUserRole() {
 		return userRole;
 	}
@@ -94,7 +77,29 @@ public class PACSPortalUser {
 		this.userRole = userRole;
 	}
 
-	public boolean validateIfAuthorized(PrivilegeEnum type)	{
+	public boolean validateIfAuthorized(PrivilegeEnum type) {
 		return userRole.getPrivileges().contains(type);
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("PACSPortalUser [userId=");
+		builder.append(userId);
+		builder.append(", username=");
+		builder.append(username);
+		builder.append(", fullName=");
+		builder.append(fullName);
+		builder.append(", bankUserStatusEnum=");
+		builder.append(bankUserStatusEnum);
+		builder.append(", userRole=");
+		builder.append(userRole);
+		builder.append(", bankId=");
+		builder.append(bankId);
+		builder.append(", associatedAreaId=");
+		builder.append(associatedAreaId);
+		builder.append("]");
+		return builder.toString();
+	}
+
 }

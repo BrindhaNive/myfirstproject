@@ -10,6 +10,15 @@ public class CacheUtil {
 		int statusTypeID = pacsCacheSingleton.getStatusTypeIDByStatusTypeDesc(BankUserStatusEnum.getStatusTypeDescription());
 		return pacsCacheSingleton.getStatusIdbyStatusTypeIDandStatusDesc(statusTypeID, bankUserStatusEnum.getStatusDescription());
 	}
+
+	public static BankUserStatusEnum getBankStatusEnumById(Integer stausId) {
+		PACSCacheSingleton pacsCacheSingleton = PACSCacheSingleton.getInstance();
+		int statusTypeID = pacsCacheSingleton.getStatusTypeIDByStatusTypeDesc(BankUserStatusEnum.getStatusTypeDescription());
+		return BankUserStatusEnum.getEnumByStatusName(pacsCacheSingleton.getStatusDescbyStatusIdandStatusTypeID(statusTypeID, stausId));
+	}
 	
-	
+	public static String getRoleDescByID(Integer roleId) {
+		PACSCacheSingleton pacsCacheSingleton = PACSCacheSingleton.getInstance();
+		return pacsCacheSingleton.getRoleDescbyRoleID(roleId);
+	}
 }

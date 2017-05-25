@@ -39,7 +39,7 @@
 						</div>
 						<div class="profile_info">
 							<span>Welcome,</span>
-							<h2>Marc Gordon</h2>
+							<h2><c:out value="${baseCommandForm.pacsPortalUser.fullName}"/></h2>
 						</div>
 					</div>
 					<!-- /menu profile quick info -->
@@ -72,7 +72,7 @@
 						</div>
 
 						<ul class="nav navbar-nav navbar-right">
-							<li class=""><a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src="/resources/dashboard/images/img.jpg" alt="">Marc Gordon <span class=" fa fa-angle-down"></span>
+							<li class=""><a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src="/resources/dashboard/images/img.jpg" alt=""><c:out value="${baseCommandForm.pacsPortalUser.fullName}"/> <span class=" fa fa-angle-down"></span>
 							</a>
 								<ul class="dropdown-menu dropdown-usermenu pull-right">
 									<li><a href="#">Help</a></li>

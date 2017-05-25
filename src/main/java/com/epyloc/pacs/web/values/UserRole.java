@@ -46,4 +46,15 @@ public class UserRole {
 		this.privileges.add(privilegeEnum);
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("UserRole [role=");
+		builder.append(role);
+		builder.append(", privileges=");
+		builder.append(privileges);
+		builder.append("]");
+		return builder.toString();
+	}
+
 }

@@ -1,11 +1,11 @@
 package com.epyloc.pacs.constants;
 
 public enum RolesEnum {
-	
 	DEFAULT("DEFAULT","DEFAULT"),
-	SITE_ADMIN("Site Admin", "Admin"),
-	BANK_MANAGER("Bank Manager", "BM"),
-	JOINT_REGISTAR("Joint Registar", "JR");
+	BANK_USER("BANK USER", "BU"),
+	TALUK_USER("TALUK USER", "TU"),
+	DISTRICT_USER("DISTRICT USER", "DU"),
+	STATE_USER("STATE USER", "SU");
 	
 	private String roleName;
 	private String shortName;

@@ -2,8 +2,10 @@ package com.epyloc.pacs.constants;
 
 public enum PrivilegeEnum {
 
-	ADD_MEMBERSHIP("Add Membership"), 
-	EDIT_MEMBERSHIP("Edit Membership");
+	VIEW_DETAILS("SELECT"), 
+	CREATE_DETAILS("CREATE"),
+	UPDATE_DETAILS("UPDATE"),
+	APPROVE_DETAILS("APPROVE");
 
 	private String privilegeName;
 

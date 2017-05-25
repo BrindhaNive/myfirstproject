@@ -15,6 +15,8 @@ import com.epyloc.pacs.cache.values.StatusTypeDetails;
 import com.epyloc.pacs.dao.CacheDataAccessor;
 import com.epyloc.pacs.exception.PacsCriticalException;
 import com.epyloc.pacs.util.Pair;
+import com.epyloc.pacs.web.values.Priv;
+import com.epyloc.pacs.web.values.Role;
 
 @Service("pacsCacheWrapper")
 public class PACSCacheWrapper {
@@ -52,6 +54,16 @@ public class PACSCacheWrapper {
 
 		logger.debug("statusCacheValue:" + statusCacheValue);
 		return statusCacheValue;
+	}
+
+	public Map<Integer, String> populateRoleList() {
+		List<Role> roleList = cacheDataAccessor.getRoleList();
+		Map<Integer, String> roleMap = new HashMap<Integer, String>();
+		for (Role role : roleList) {
+			roleMap.put(role.getId(), role.getRole());
+		}
+		logger.debug("RoleMap:" + roleMap);
+		return roleMap;
 	}
 
 }

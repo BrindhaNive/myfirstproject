@@ -25,6 +25,7 @@ public class PACSCacheSingleton implements Relodable {
 	private Map<Integer, List<StatusDetails>> statusDtlMap;
 	Map<Integer, Map<String, Integer>> StatTypIdStatDescMap;
 	Map<Integer, Map<Integer, String>> StatTypIdStatIdMap;
+	Map<Integer, String> roleMap;
 
 	public static PACSCacheSingleton getInstance() {
 		logger.debug("Inside getInstance");
@@ -57,6 +58,7 @@ public class PACSCacheSingleton implements Relodable {
 	private void reloadCache() {
 		try {
 			populateStatusDetails();
+			populateRoleDetails();
 			_instance = null;
 		} catch (Exception e) {
 			logger.error("Exception While Loading Master data ", e);
@@ -65,12 +67,18 @@ public class PACSCacheSingleton implements Relodable {
 	}
 
 	public void populateStatusDetails() throws PacsCriticalException {
-		PACSCacheWrapper fpcCacheWrapper = (PACSCacheWrapper) ApplicationContextProvider.getApplicationContext().getBean("pacsCacheWrapper");
-		StatusCacheValue statusCacheValue = fpcCacheWrapper.populateStatusDtls();
+		PACSCacheWrapper pacsCacheWrapper = (PACSCacheWrapper) ApplicationContextProvider.getApplicationContext().getBean("pacsCacheWrapper");
+		StatusCacheValue statusCacheValue = pacsCacheWrapper.populateStatusDtls();
 		statusTypeMap = statusCacheValue.getStatusTypeMap();
 		statusDtlMap = statusCacheValue.getStatusDtlMap();
 		StatTypIdStatDescMap = statusCacheValue.getStatusTypeDtlDescMap();
 		StatTypIdStatIdMap = statusCacheValue.getStatusTypeDtlIDMap();
+	}
+
+	public void populateRoleDetails() {
+		PACSCacheWrapper pacsCacheWrapper = (PACSCacheWrapper) ApplicationContextProvider.getApplicationContext().getBean("pacsCacheWrapper");
+
+		roleMap = pacsCacheWrapper.populateRoleList();
 	}
 
 	public Object readResolve() throws ObjectStreamException {
@@ -93,5 +101,9 @@ public class PACSCacheSingleton implements Relodable {
 			return StatTypIdStatIdMap.get(statusTypeId).get(statusId);
 		}
 		return null;
+	}
+	
+	public String getRoleDescbyRoleID(Integer roleId) {
+		return roleMap.get(roleId);
 	}
 }

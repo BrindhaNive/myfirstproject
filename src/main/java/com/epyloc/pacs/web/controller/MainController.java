@@ -1,6 +1,5 @@
 package com.epyloc.pacs.web.controller;
 
-import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,25 +11,36 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.epyloc.pacs.mappers.RoleMaper;
-import com.epyloc.pacs.web.values.Role;
+import com.epyloc.pacs.manager.PACSCommonManager;
+import com.epyloc.pacs.web.commandform.BaseCommandForm;
 
 @Controller
+@SessionAttributes("baseCommandForm")
 public class MainController {
 
 	private static final Logger logger = Logger.getLogger(MainController.class);
 	@Autowired
 	public SqlSessionFactory sessionFactory;
+
+	@Autowired
+	PACSCommonManager pacsCommonManager;
+
 	@RequestMapping(value = "/landing", method = RequestMethod.GET)
 	public ModelAndView defaultPage() {
 
-		ModelAndView model = new ModelAndView();
-		model.addObject("title", "Spring Security Login Form - Database Authentication");
-		model.addObject("message", "This is default page!");
-		model.setViewName("landing");
-		return model;
+		ModelAndView mv = new ModelAndView();
+
+		BaseCommandForm baseCommandForm = new BaseCommandForm();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		logger.debug("name:" + username);
+		baseCommandForm.setPacsPortalUser(pacsCommonManager.getuserDetails(username));
+		mv.setViewName("landing");
+		mv.addObject("baseCommandForm", baseCommandForm);
+		return mv;
 
 	}
 
@@ -47,8 +57,7 @@ public class MainController {
 	}
 
 	@RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout) {
+	public ModelAndView login(@RequestParam(value = "error", required = false) String error, @RequestParam(value = "logout", required = false) String logout) {
 
 		logger.debug("Inside error:" + error);
 		logger.debug("logout:" + logout);
@@ -60,6 +69,7 @@ public class MainController {
 		if (logout != null) {
 			model.addObject("msg", "You've been logged out successfully.");
 		}
+
 		model.setViewName("login");
 		logger.debug("outside Login");
 		return model;
@@ -86,13 +96,9 @@ public class MainController {
 		return model;
 
 	}
-	
+
 	@RequestMapping(value = "/deposit", method = RequestMethod.GET)
 	public ModelAndView depositPage() {
-		SqlSession session = sessionFactory.openSession();
-		RoleMaper maper = session.getMapper(RoleMaper.class);
-		Role role = maper.selectRole(1);
-		System.out.println(role.getRole());
 		ModelAndView model = new ModelAndView();
 		model.addObject("title", "Deposits");
 		model.addObject("message", "This is deposits page!");
