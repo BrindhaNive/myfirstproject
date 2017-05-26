@@ -142,9 +142,8 @@
 																	<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 																		<div class="panel-body">
 																			<div class="form-group">
-																				<label class="col-md-4 control-label" for="searchinput">Membership Name</label>
-																				<label class="col-md-4 control-label" for="searchinput">Member Account Number</label>
-																				<label class="col-md-4 control-label" for="searchinput">Membership ID</label>
+																				<label class="col-md-4 control-label" for="searchinput">Membership Name</label> <label class="col-md-4 control-label" for="searchinput">Member Account Number</label> <label class="col-md-4 control-label" for="searchinput">Membership
+																					ID</label>
 																			</div>
 																		</div>
 																	</div>
