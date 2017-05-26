@@ -10,7 +10,6 @@ import com.epyloc.pacs.constants.PrivilegeEnum;
 import com.epyloc.pacs.constants.RolesEnum;
 import com.epyloc.pacs.dao.PACSDao;
 import com.epyloc.pacs.util.CacheUtil;
-import com.epyloc.pacs.web.controller.MainController;
 import com.epyloc.pacs.web.values.PACSPortalUser;
 import com.epyloc.pacs.web.values.Priv;
 import com.epyloc.pacs.web.values.UserDetails;

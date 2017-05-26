@@ -5,7 +5,8 @@ public enum PrivilegeEnum {
 	VIEW_DETAILS("SELECT"), 
 	CREATE_DETAILS("CREATE"),
 	UPDATE_DETAILS("UPDATE"),
-	APPROVE_DETAILS("APPROVE");
+	APPROVE_DETAILS("APPROVE")
+	;
 
 	private String privilegeName;
 

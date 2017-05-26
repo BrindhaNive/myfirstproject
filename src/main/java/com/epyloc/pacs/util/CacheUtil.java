@@ -1,6 +1,9 @@
 package com.epyloc.pacs.util;
 
+import java.util.Map;
+
 import com.epyloc.pacs.cache.PACSCacheSingleton;
+import com.epyloc.pacs.constants.AcctTypeEnum;
 import com.epyloc.pacs.constants.BankUserStatusEnum;
 
 public class CacheUtil {
@@ -16,9 +19,15 @@ public class CacheUtil {
 		int statusTypeID = pacsCacheSingleton.getStatusTypeIDByStatusTypeDesc(BankUserStatusEnum.getStatusTypeDescription());
 		return BankUserStatusEnum.getEnumByStatusName(pacsCacheSingleton.getStatusDescbyStatusIdandStatusTypeID(statusTypeID, stausId));
 	}
-	
+
 	public static String getRoleDescByID(Integer roleId) {
 		PACSCacheSingleton pacsCacheSingleton = PACSCacheSingleton.getInstance();
 		return pacsCacheSingleton.getRoleDescbyRoleID(roleId);
+	}
+
+	public static Map<Integer, String> getSchemeMapByAcctTypeEnum(AcctTypeEnum acctTypeEnum) {
+		PACSCacheSingleton pacsCacheSingleton = PACSCacheSingleton.getInstance();
+		Integer acctTypeId = pacsCacheSingleton.getAcctIDbyDesc(acctTypeEnum.getAcctTypeDesc());
+		return pacsCacheSingleton.getScheDtlsbyAcctId(acctTypeId);
 	}
 }

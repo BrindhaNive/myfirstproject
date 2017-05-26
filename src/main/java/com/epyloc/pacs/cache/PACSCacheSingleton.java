@@ -12,6 +12,7 @@ import com.epyloc.pacs.cache.values.StatusCacheValue;
 import com.epyloc.pacs.cache.values.StatusDetails;
 import com.epyloc.pacs.exception.PacsCriticalException;
 import com.epyloc.pacs.util.ApplicationContextProvider;
+import com.epyloc.pacs.util.Pair;
 import com.epyloc.pacs.wrapper.PACSCacheWrapper;
 
 public class PACSCacheSingleton implements Relodable {
@@ -23,9 +24,12 @@ public class PACSCacheSingleton implements Relodable {
 
 	private Map<String, Integer> statusTypeMap;
 	private Map<Integer, List<StatusDetails>> statusDtlMap;
-	Map<Integer, Map<String, Integer>> StatTypIdStatDescMap;
-	Map<Integer, Map<Integer, String>> StatTypIdStatIdMap;
-	Map<Integer, String> roleMap;
+	private Map<Integer, Map<String, Integer>> StatTypIdStatDescMap;
+	private Map<Integer, Map<Integer, String>> StatTypIdStatIdMap;
+	private Map<Integer, String> roleMap;
+	private Map<Integer, Map<Integer, String>> acctIdSchemeMap;
+	private Map<String, Integer> acctDescIdMap;
+	private Map<Integer, String> acctIdDescMap;
 
 	public static PACSCacheSingleton getInstance() {
 		logger.debug("Inside getInstance");
@@ -59,11 +63,28 @@ public class PACSCacheSingleton implements Relodable {
 		try {
 			populateStatusDetails();
 			populateRoleDetails();
+			populateSchemeDtls();
+			populateAcctTypeList();
 			_instance = null;
 		} catch (Exception e) {
 			logger.error("Exception While Loading Master data ", e);
 			instance = _instance;
 		}
+	}
+
+	private void populateAcctTypeList() {
+		PACSCacheWrapper pacsCacheWrapper = (PACSCacheWrapper) ApplicationContextProvider.getApplicationContext().getBean("pacsCacheWrapper");
+		Pair<Map<String, Integer>, Map<Integer, String>> acctTypePair = pacsCacheWrapper.populateAcctTypeList();
+		acctDescIdMap = acctTypePair.getFirstObject();
+		acctIdDescMap = acctTypePair.getSecondObject();
+		logger.debug("acctDescIdMap:" + acctDescIdMap);
+		logger.debug("acctIdDescMap:" + acctIdDescMap);
+	}
+
+	private void populateSchemeDtls() {
+		PACSCacheWrapper pacsCacheWrapper = (PACSCacheWrapper) ApplicationContextProvider.getApplicationContext().getBean("pacsCacheWrapper");
+		acctIdSchemeMap = pacsCacheWrapper.populateSchemeDtls();
+		logger.debug("acctIdSchemeMap:" + acctIdSchemeMap);
 	}
 
 	public void populateStatusDetails() throws PacsCriticalException {
@@ -102,8 +123,20 @@ public class PACSCacheSingleton implements Relodable {
 		}
 		return null;
 	}
-	
+
 	public String getRoleDescbyRoleID(Integer roleId) {
 		return roleMap.get(roleId);
+	}
+
+	public String getAcctDescbyID(Integer acctId) {
+		return acctIdDescMap.get(acctId);
+	}
+
+	public Integer getAcctIDbyDesc(String acctDs) {
+		return acctDescIdMap.get(acctDs);
+	}
+
+	public Map<Integer, String> getScheDtlsbyAcctId(Integer acctId) {
+		return acctIdSchemeMap.get(acctId);
 	}
 }

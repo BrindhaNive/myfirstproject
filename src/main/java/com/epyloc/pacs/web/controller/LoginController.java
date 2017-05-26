@@ -19,9 +19,9 @@ import com.epyloc.pacs.web.commandform.BaseCommandForm;
 
 @Controller
 @SessionAttributes("baseCommandForm")
-public class MainController {
+public class LoginController {
 
-	private static final Logger logger = Logger.getLogger(MainController.class);
+	private static final Logger logger = Logger.getLogger(LoginController.class);
 	@Autowired
 	public SqlSessionFactory sessionFactory;
 
@@ -41,18 +41,6 @@ public class MainController {
 		mv.setViewName("landing");
 		mv.addObject("baseCommandForm", baseCommandForm);
 		return mv;
-
-	}
-
-	@RequestMapping(value = "/admin**", method = RequestMethod.GET)
-	public ModelAndView adminPage() {
-
-		ModelAndView model = new ModelAndView();
-		model.addObject("title", "Spring Security Login Form - Database Authentication");
-		model.addObject("message", "This page is for ROLE_ADMIN only!");
-		model.setViewName("admin");
-
-		return model;
 
 	}
 
@@ -93,16 +81,6 @@ public class MainController {
 		}
 
 		model.setViewName("403");
-		return model;
-
-	}
-
-	@RequestMapping(value = "/deposit", method = RequestMethod.GET)
-	public ModelAndView depositPage() {
-		ModelAndView model = new ModelAndView();
-		model.addObject("title", "Deposits");
-		model.addObject("message", "This is deposits page!");
-		model.setViewName("deposit");
 		return model;
 
 	}

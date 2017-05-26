@@ -15,8 +15,9 @@ import com.epyloc.pacs.cache.values.StatusTypeDetails;
 import com.epyloc.pacs.dao.CacheDataAccessor;
 import com.epyloc.pacs.exception.PacsCriticalException;
 import com.epyloc.pacs.util.Pair;
-import com.epyloc.pacs.web.values.Priv;
+import com.epyloc.pacs.web.values.AcctType;
 import com.epyloc.pacs.web.values.Role;
+import com.epyloc.pacs.web.values.SchemeTypeDetails;
 
 @Service("pacsCacheWrapper")
 public class PACSCacheWrapper {
@@ -64,6 +65,67 @@ public class PACSCacheWrapper {
 		}
 		logger.debug("RoleMap:" + roleMap);
 		return roleMap;
+	}
+
+	public Map<Integer, Map<Integer, String>> populateSchemeDtls() {
+		List<SchemeTypeDetails> schemeDtlList = cacheDataAccessor.getSchemeDtls();
+
+		Map<Integer, Map<Integer, String>> acctSchemeDtlMap = new HashMap<Integer, Map<Integer, String>>();
+		for (SchemeTypeDetails schemeTypeDtls : schemeDtlList) {
+
+			if (acctSchemeDtlMap.get(schemeTypeDtls.getAcctTypId()) == null) {
+				acctSchemeDtlMap.put(schemeTypeDtls.getAcctTypId(), new HashMap<Integer, String>());
+			}
+			acctSchemeDtlMap.get(schemeTypeDtls.getAcctTypId()).put(schemeTypeDtls.getSchTypId(), schemeTypeDtls.getSchemeDesc());
+		}
+		return acctSchemeDtlMap;
+	}
+
+	public Pair<Map<String, Integer>, Map<Integer, String>> populateAcctTypeList() {
+		List<AcctType> acctTypeList = cacheDataAccessor.getAcctTypeDtls();
+
+		Map<String, Integer> acctTypeDescMap = new HashMap<String, Integer>();
+		Map<Integer, String> acctTypeIdMap = new HashMap<Integer, String>();
+
+		for (AcctType acctType : acctTypeList) {
+			acctTypeDescMap.put(acctType.getAcctDesc(), acctType.getId());
+			acctTypeIdMap.put(acctType.getId(), acctType.getAcctDesc());
+		}
+
+		Pair<Map<String, Integer>, Map<Integer, String>> acctPair = getAcctPairObject();
+		acctPair.setFirstObject(acctTypeDescMap);
+		acctPair.setSecondObject(acctTypeIdMap);
+		return acctPair;
+	}
+
+	public static Pair<Map<String, Integer>, Map<Integer, String>> getAcctPairObject() {
+		Pair<Map<String, Integer>, Map<Integer, String>> pairImpl = new Pair<Map<String, Integer>, Map<Integer, String>>() {
+			private Map<String, Integer> acctTypeDescMap = new HashMap<String, Integer>();
+			private Map<Integer, String> acctTypeIdMap = new HashMap<Integer, String>();
+
+			@Override
+			public void setFirstObject(Map<String, Integer> t) {
+				acctTypeDescMap = t;
+			}
+
+			@Override
+			public Map<String, Integer> getFirstObject() {
+				return acctTypeDescMap;
+			}
+
+			@Override
+			public void setSecondObject(Map<Integer, String> v) {
+				acctTypeIdMap = v;
+
+			}
+
+			@Override
+			public Map<Integer, String> getSecondObject() {
+				return acctTypeIdMap;
+			}
+
+		};
+		return pairImpl;
 	}
 
 }

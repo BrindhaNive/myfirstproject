@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html lang="en" class=" ">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -36,7 +38,9 @@
 						</div>
 						<div class="profile_info">
 							<span>Welcome,</span>
-							<h2>Marc Gordon</h2>
+							<h2>
+								<c:out value="${baseCommandForm.pacsPortalUser.fullName}" />
+							</h2>
 						</div>
 					</div>
 					<!-- /menu profile quick info -->
@@ -103,43 +107,27 @@
 												<!-- Selects -->
 												<div class="panel panel-primary">
 													<div class="panel-heading" id="basepanel">
-														<h4 class="panel-title">Deposits</h4>
+														<h4 class="panel-title">Fixed Deposits</h4>
 													</div>
 													<div class="panel-body">
 														<!-- TO DO : Replace with Spring form -->
-														<form class="form-horizontal">
+														<form:form class="form-horizontal" id="fixedDepositAdd" modelAttribute="fdCommandForm" commandName="fdCommandForm" method="post" name="fixedDepositAdd" action="">
 															<fieldset>
 																<!-- Search input-->
 																<div class="form-group">
 																	<label class="col-md-4 control-label" for="searchinput">Membership ID</label>
 																	<div class="col-md-5">
-																		<input id="searchinput" name="searchinput" type="search" placeholder="Enter name or membership ID" class="form-control input-md" required="">
-
-																	</div>
-																</div>
-
-																<!-- Select Basic -->
-																<div class="form-group">
-																	<label class="col-md-4 control-label" for="accountType">Account Type</label>
-																	<div class="col-md-5">
-																		<select id="accountType" name="accountType" class="form-control">
-																			<option value="1">Fixed deposit</option>
-																			<option value="2">Recurring deposit</option>
-																			<option value="3">Savings account</option>
-																			<option value="4">Current account</option>
-																		</select>
+																		<form:input path="membershipId" name="membershipId" type="search" placeholder="Enter name or membership ID" class="form-control input-md" />
 																	</div>
 																</div>
 
 																<div class="form-group">
 																	<label class="col-md-4 control-label" for="schemeType">Scheme Type</label>
 																	<div class="col-md-5">
-																		<select id="schemeType" name="schemeType" class="form-control">
-																			<option value="1">Fixed deposit</option>
-																			<option value="2">Recurring deposit</option>
-																			<option value="3">Savings account</option>
-																			<option value="4">Current account</option>
-																		</select>
+																		<form:select path="selectedFdSchemeTypeId">
+																			<form:option value="0" label="--- Select ---" />
+																			<form:options items="${schemeTypeMap}" />
+																		</form:select>
 																	</div>
 																</div>
 
@@ -153,11 +141,11 @@
 																	</div>
 																	<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 																		<div class="panel-body">
-																			<ul>
-																				<li>The titles are block, so you don't have to click the text part to activate it</li>
-																				<li>Indicators for expand / collapsing items</li>
-																				<li>Removed title links' obnoxious :hover underlinings, and outlines.</li>
-																			</ul>
+																			<div class="form-group">
+																				<label class="col-md-4 control-label" for="searchinput">Membership Name</label>
+																				<label class="col-md-4 control-label" for="searchinput">Member Account Number</label>
+																				<label class="col-md-4 control-label" for="searchinput">Membership ID</label>
+																			</div>
 																		</div>
 																	</div>
 																</div>
@@ -199,7 +187,7 @@
 																</div>
 															</div>
 
-														</form>
+														</form:form>
 
 													</div>
 
