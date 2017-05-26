@@ -18,8 +18,13 @@
 <!-- Custom Theme Style -->
 <spring:url value="/resources/dashboard/css/custom.min.css" var="customCss" />
 <link href="${customCss}" rel="stylesheet" />
+<spring:url value="/resources/dashboard/css/jquery-ui.min.css" var="jqueryui" />
+<link href="${jqueryui}" rel="stylesheet" />
+<spring:url value="/resources/dashboard/css/jquery-ui.structure.min.css" var="jqueryuistruc" />
+<link href="${jqueryuistruc}" rel="stylesheet" />
+<spring:url value="/resources/dashboard/css/jquery-ui.theme.min.css" var="jquerytheme" />
+<link href="${jquerytheme}" rel="stylesheet" />
 </head>
-
 <body class="nav-md" id="funding-dahsboard">
 	<div class="container body">
 		<div class="main_container">
@@ -91,9 +96,43 @@
 																		</h4>
 																	</div>
 																	<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-																		<div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-																			eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
-																			excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div>
+																		<div class="panel-body">
+																			<table class="table table-bordered headcount-table">
+																				<tbody>
+																					<tr>
+																						<td class="col-md-1">First Name</td>
+																						<td class="col-md-1"><form:input path="firstName" name="firstName" placeholder="Enter First name" class="form-control input-md" /></td>
+																						<td class="col-md-1">Last Name</td>
+																						<td class="col-md-1"><form:input path="lastName" name="lastName" placeholder="Enter Last name" class="form-control input-md" /></td>
+																					</tr>
+																					<tr>
+																						<td class="col-md-1">Nominee Relationship</td>
+																						<td class="col-md-1"><form:select path="relationship">
+																								<form:option value="0" label="--- Select ---" />
+																								<form:options items="${nomineeMap}" />
+																							</form:select></td>
+																						<td class="col-md-1">Aadhaar ID</td>
+																						<td class="col-md-1"><form:input path="aadharId" name="aadharId" placeholder="Enter Aadhar Id" class="form-control input-md" /></td>
+																					</tr>
+																					<tr>
+																						<td class="col-md-1">Address One</td>
+																						<td class="col-md-1"><form:input path="addressOne" name="addressOne" placeholder="Enter Address One" class="form-control input-md" /></td>
+																						<td class="col-md-1">Address Two</td>
+																						<td class="col-md-1"><form:input path="addressTwo" name="addressTwo" placeholder="Enter Address Two" class="form-control input-md" /></td>
+																					</tr>
+																					<tr>
+																						<td class="col-md-1">City</td>
+																						<td class="col-md-1"><form:input path="city" name="city" placeholder="Enter city" class="form-control input-md" /></td>
+																						<td class="col-md-1">State</td>
+																						<td class="col-md-1"><form:input path="state" name="state" placeholder="Enter state" class="form-control input-md" /></td>
+																					</tr>
+																					<tr>
+																						<td class="col-md-1">Pincode</td>
+																						<td class="col-md-1"><form:input path="pincode" name="pincode" placeholder="Enter pincode" class="form-control input-md" /></td>
+																					</tr>
+																				</tbody>
+																			</table>
+																		</div>
 																	</div>
 																</div>
 																<div class="panel panel-primary">
@@ -103,9 +142,32 @@
 																		</h4>
 																	</div>
 																	<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-																		<div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-																			eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
-																			excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div>
+																		<div class="panel-body">
+
+																			<table class="table table-bordered headcount-table">
+																				<tbody>
+																					<tr>
+																						<td class="col-md-1">Principal / Amount</td>
+																						<td class="col-md-1"><form:input path="principalAmt" name="principalAmt" placeholder="Amount" class="form-control input-md" /></td>
+																						<td class="col-md-1">Account open Date</td>
+																						<td class="col-md-1"><form:input path="acctOpenDate" name="acctOpenDate" class="form-control input-md" /></td>
+																					</tr>
+																					<tr>
+																						<td class="col-md-1">Date of Deposit</td>
+																						<td class="col-md-1"><form:input path="dateOfDeposit" name="dateOfDeposit" placeholder="Select Date" class="form-control input-md" /></td>
+																						<td class="col-md-1">Deposit Period</td>
+
+																						<td class="count-bg col-md-1">days <form:input path="daysPeriod" name="daysPeriod" value ="0" class="form-control input-md" /> month <form:input path="monthsPeriod" name="monthsPeriod" value ="0" class="form-control input-md" /></td>
+																					<tr>
+																						<td class="col-md-1">Maturity Date</td>
+																						<td class="col-md-1"><form:input path="maturityDate" name="maturityDate" class="form-control input-md" /></td>
+																						<td class="col-md-1">Rate of interest</td>
+																						<td class="col-md-1">${rateOfInterest}</td>
+																					</tr>
+																				</tbody>
+																			</table>
+
+																		</div>
 																	</div>
 																</div>
 																<div class="panel panel-primary">
@@ -170,8 +232,93 @@
 	<!-- Custom Theme Scripts -->
 	<spring:url value="/resources/dashboard/js/custom.min.js" var="customJs" />
 	<script src="${customJs}"></script>
-	<!-- echart Theme Scripts -->
+	<spring:url value="/resources/dashboard/js/calendar.js" var="calenderJs" />
+	<script src="${calenderJs}"></script>
+	<spring:url value="/resources/dashboard/js/jquery-ui.min.js" var="jqueryui" />
+	<script src="${jqueryui}"></script>
 
+	<spring:url value="/resources/dashboard/js/moments.js" var="moments" />
+	<script src="${moments}"></script>
+
+
+
+	<!-- echart Theme Scripts -->
+	<script type="text/javascript">
+		$(function() {
+			$('#dateOfDeposit').datepicker({
+				dateFormat : 'yy-mm-dd',
+				minDate : 0,
+				showAnim : 'slideDown',
+				showOn : "both",
+				buttonImage : "/resources/dashboard/images/icon-calendar.png",
+				buttonImageOnly : true,
+				buttonText : "",
+			}).datepicker("setDate", new Date());
+		});
+		;(function($, window, document, undefined){
+			$("#daysPeriod").on("change", function(){
+							alert($('#daysPeriod').val());
+							alert("Date var:");
+							alert($("#dateOfDeposit").val());
+							var date = new Date($("#dateOfDeposit").val()), 
+								days = parseInt($("#daysPeriod").val(), 10);
+							alert("Date:");
+							alert(date);
+							alert("days:");
+							alert(days);
+							if (!isNaN(date.getTime())) {
+								date.setDate(date.getDate() + days);
+								alert("After days add:"+date.toInputFormat());
+								var monthperiod = $("#monthsPeriod").val();
+								alert("monthsPeriod:"+monthperiod);
+								if(parseInt(monthperiod) > 0){
+									date.setMonth(date.getMonth() + monthperiod);
+									alert("date after monthset:"+date);
+									alert("After Months add:"+date.toInputFormat());
+								} 
+								
+								$("#maturityDate").val(date.toInputFormat());
+							} else {
+								alert("Invalid Date");
+							}
+						});
+			$("#monthsPeriod").on("change", function(){
+				alert($('#daysPeriod').val());
+				alert("Date var:");
+				alert($("#dateOfDeposit").val());
+				var date = new Date($("#dateOfDeposit").val()), 
+					days = parseInt($("#daysPeriod").val(), 10);
+				alert("Date:");
+				alert(date);
+				alert("days:");
+				alert(days);
+				if (!isNaN(date.getTime())) {
+					date.setDate(date.getDate() + days);
+					alert("After days add:"+date.toInputFormat());
+					var monthperiod = $("#monthsPeriod").val();
+					alert("monthsPeriod:"+monthperiod);
+					if(parseInt(monthperiod) > 0){
+						date.setMonth(date.getMonth() + monthperiod);
+						alert("date after monthset:"+date);
+						alert("After Months add:"+date.toInputFormat());
+					} 
+					
+					$("#maturityDate").val(date.toInputFormat());
+				} else {
+					alert("Invalid Date");
+				}
+			});
+		 Date.prototype.toInputFormat = function() {
+		       var yyyy = this.getFullYear().toString();
+		       alert("yyyy:"+yyyy);
+		       var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
+		       alert("mm:"+mm);
+		       var dd  = this.getDate().toString();
+		       alert("dd:"+dd);
+		       return yyyy + "-" + (mm[1]?mm:"0"+mm[0]) + "-" + (dd[1]?dd:"0"+dd[0]); // padding
+		    };
+		})(jQuery, this, document);
+	</script>
 
 	<style type="text/css">
 #accordion .panel-heading {
