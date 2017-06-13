@@ -23,7 +23,7 @@
 					<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 						<div class="menu_section active">
 							<ul class="nav side-menu">
-								<li><a href="#"> <i class="fa fa-money"></i> Membership
+								<li><a href="membership"> <i class="fa fa-money"></i> Membership
 								</a></li>
 
 								<li class="vplist-menu"><a><i class="fa fa-group"></i> Deposit <span class="fa fa-chevron-down"></span></a>

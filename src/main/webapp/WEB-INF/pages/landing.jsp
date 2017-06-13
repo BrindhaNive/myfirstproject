@@ -177,13 +177,11 @@
 			</div>
 			<!-- /page content -->
 
-			<!-- footer content 
-        <footer>
-          <div class="pull-right">
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-         /footer content -->
+			<footer class="customfooter">
+				<div class="pull-right"></div>
+				<div class="clearfix"></div>
+			</footer>
+          
 		</div>
 	</div>
 
