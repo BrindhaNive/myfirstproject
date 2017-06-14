@@ -106,8 +106,7 @@
 																					<label class="control-label">Staff</label>
 																					<form:select path="staff" class="form-control dropdown" id="staff">
 																						<form:option value="0" label="--- Select ---" />
-																						<form:option value="1" label="YES" />
-																						<form:option value="2" label="NO" />
+																						<form:options items="${staffMap}" />
 																					</form:select>
 																				</div>
 
@@ -120,8 +119,7 @@
 																					<label class="control-label">Senior citizen</label>
 																					<form:select path="seniorCitizen" class="form-control dropdown" id="seniorCitizen">
 																						<form:option value="0" label="--- Select ---" />
-																						<form:option value="1" label="YES" />
-																						<form:option value="2" label="NO" />
+																						<form:options items="${seniorCitizenMap}"/>
 																					</form:select>
 																				</div>
 
@@ -129,7 +127,7 @@
 																					<label class="control-label">Senior citizen proof</label>
 																					<form:select path="seniorCitizenProof" class="form-control dropdown" id="seniorCitizenProof">
 																						<form:option value="0" label="--- Select ---" />
-																						<form:options items="${genderMap}" />
+																						<form:options items="${proofMap}" />
 																					</form:select>
 																				</div>
 
@@ -169,7 +167,7 @@
 																					<label class="control-label">Type of farmer</label>
 																					<form:select path="typeOfFarmer" class="form-control dropdown" id="typeOfFarmer">
 																						<form:option value="0" label="--- Select ---" />
-																						<form:options items="${genderMap}" />
+																						<form:options items="${typeOfFarmerMap}" />
 																					</form:select>
 																				</div>
 																			</div>
