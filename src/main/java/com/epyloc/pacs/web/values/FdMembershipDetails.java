@@ -4,7 +4,8 @@ public class FdMembershipDetails {
 
 	private String membershipName;
 	private String membershipAcctNum;
-	private String membershipId;
+	private Integer membershipId;
+	private String memDispName;
 
 	public String getMembershipName() {
 		return membershipName;
@@ -22,14 +23,22 @@ public class FdMembershipDetails {
 		this.membershipAcctNum = membershipAcctNum;
 	}
 
-	public String getMembershipId() {
+	public Integer getMembershipId() {
 		return membershipId;
 	}
 
-	public void setMembershipId(String membershipId) {
+	public void setMembershipId(Integer membershipId) {
 		this.membershipId = membershipId;
 	}
 
+	public String getMemDispName() {
+		return this.membershipAcctNum + "--" + this.membershipName;
+	}
+
+	public void setMemDispName(String memDispName) {
+		this.memDispName = memDispName;
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

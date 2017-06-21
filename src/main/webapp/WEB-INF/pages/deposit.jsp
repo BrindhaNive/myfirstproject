@@ -58,7 +58,8 @@
 																<div class="form-group">
 																	<label class="col-md-4 control-label" for="searchinput">Membership ID</label>
 																	<div class="col-md-5">
-																		<form:input path="membershipId" name="membershipId" type="search" placeholder="Enter name or membership ID" class="form-control input-md" />
+																		<form:hidden path="membershipId" name="membershipId"/>
+																			<input type="text"  id="membershipIdsug" name="membershipIdsug" value="">
 																	</div>
 																</div>
 
@@ -83,7 +84,7 @@
 																	<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 																		<div class="panel-body">
 																			<div class="form-group">
-																				<label class="col-md-4 control-label" for="searchinput">Membership Name</label> <label class="col-md-4 control-label" for="searchinput">Member Account Number</label> <label class="col-md-4 control-label" for="searchinput">Membership
+																				<label id="memName" class="col-md-4 control-label" for="searchinput">Membership Name</label> <label id="memAccNo" class="col-md-4 control-label" for="searchinput">Member Account Number</label> <label id="memid" class="col-md-4 control-label" for="searchinput">Membership
 																					ID</label>
 																			</div>
 																		</div>
@@ -95,7 +96,7 @@
 																			<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"> Nominee Details </a>
 																		</h4>
 																	</div>
-																	<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+																	<div id="collapseTwo" class="panel-collapse in" role="tabpanel" aria-labelledby="headingTwo">
 																		<div class="panel-body">
 																			<table class="table table-bordered headcount-table">
 																				<tbody>
@@ -132,6 +133,7 @@
 																					</tr>
 																				</tbody>
 																			</table>
+
 																		</div>
 																	</div>
 																</div>
@@ -141,7 +143,7 @@
 																			<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree"> Deposit / installment Details </a>
 																		</h4>
 																	</div>
-																	<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+																	<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
 																		<div class="panel-body">
 
 																			<table class="table table-bordered headcount-table">
@@ -157,29 +159,64 @@
 																						<td class="col-md-1"><form:input path="dateOfDeposit" name="dateOfDeposit" placeholder="Select Date" class="form-control input-md" /></td>
 																						<td class="col-md-1">Deposit Period</td>
 
-																						<td class="count-bg col-md-1">days <form:input path="daysPeriod" name="daysPeriod" value ="0" class="form-control input-md" /> month <form:input path="monthsPeriod" name="monthsPeriod" value ="0" class="form-control input-md" /></td>
+																						<td class="count-bg col-md-1">days <form:input path="daysPeriod" name="daysPeriod" value="0" class="form-control input-md" /> month <form:input path="monthsPeriod" name="monthsPeriod" value="0"
+																								class="form-control input-md" /></td>
 																					<tr>
 																						<td class="col-md-1">Maturity Date</td>
 																						<td class="col-md-1"><form:input path="maturityDate" name="maturityDate" class="form-control input-md" /></td>
 																						<td class="col-md-1">Rate of interest</td>
-																						<td class="col-md-1">${rateOfInterest}</td>
+																						<td class="col-md-1"><form:input style="border:none;" id="ROI" path="rateOfInterest" tabindex="0" readonly="true" /></td>
 																					</tr>
 																				</tbody>
 																			</table>
-
+																			<a href="javascript:;" class="btn btn-primary" id="calculateBtn" title="Calculate"> <span class="glyphicon"></span> &nbsp;Calculate FD
+																			</a>
 																		</div>
 																	</div>
 																</div>
 																<div class="panel panel-primary">
 																	<div class="panel-heading" role="tab" id="headingFour">
 																		<h4 class="panel-title">
-																			<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour"> Transaction Details </a>
+																			<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">FD Calculation Details </a>
 																		</h4>
 																	</div>
-																	<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-																		<div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-																			eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
-																			excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div>
+																	<div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
+																		<div class="panel-body">
+																			<div class="tableWrapper">
+																				<div class="tableOutputWrap">
+																					<div class="resultWrap">
+																						<div class="innerBox">
+																							<label> Maturity Value</label><span class="ouputValue"></span>
+																						</div>
+																						<div class="innerBox">
+																							<label> Due Date</label><span class="dueDate"></span>
+																						</div>
+																					</div>
+																					<div class="InterestWrap">
+																						<div class="innerBox">
+																							<label> Aggregate Interest Amount</label><span class="ouputValue"></span>
+																						</div>
+																					</div>
+
+																					<div class="tableWrap">
+																						<div class="tabs1">
+																							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																								<tr>
+																									<th>Date</th>
+																									<th>Interest Amount</th>
+																									<th>Interest Capitalized</th>
+																									<th>FD Balance</th>
+																									<th>Transaction Type</th>
+																								</tr>
+																							</table>
+																						</div>
+																					</div>
+
+																					<a onclick="javascript:fdSubmit()" class="btn btn-primary" id="submitFD" title="submitFD"> <span class="glyphicon"></span> &nbsp;Submit FD
+																					</a>
+																				</div>
+																			</div>
+																		</div>
 																	</div>
 																</div>
 															</div>
@@ -240,84 +277,115 @@
 	<spring:url value="/resources/dashboard/js/moments.js" var="moments" />
 	<script src="${moments}"></script>
 
-
-
+	<spring:url value="/resources/dashboard/js/fixed-deposit.js" var="fixeddeposit" />
+	<script src="${fixeddeposit}"></script>
+	
+	<spring:url value="/resources/dashboard/js/jquery.autocomplete.min.js" var="autocmplete" />
+	<script src="${autocmplete}"></script>
+	
+	
 	<!-- echart Theme Scripts -->
 	<script type="text/javascript">
+	$(function() {
+		$('#acctOpenDate')
+				.datepicker(
+						{
+							dateFormat : 'yy-mm-dd',
+							minDate : 0,
+							showAnim : 'slideDown',
+							showOn : "both",
+							buttonImage : "/resources/dashboard/images/icon-calendar.png",
+							buttonImageOnly : true,
+							buttonText : ""
+						}).datepicker("setDate", new Date());
+	});
 		$(function() {
-			$('#dateOfDeposit').datepicker({
-				dateFormat : 'yy-mm-dd',
-				minDate : 0,
-				showAnim : 'slideDown',
-				showOn : "both",
-				buttonImage : "/resources/dashboard/images/icon-calendar.png",
-				buttonImageOnly : true,
-				buttonText : "",
-			}).datepicker("setDate", new Date());
+			$('#dateOfDeposit')
+					.datepicker(
+							{
+								dateFormat : 'yy-mm-dd',
+								minDate : 0,
+								showAnim : 'slideDown',
+								showOn : "both",
+								buttonImage : "/resources/dashboard/images/icon-calendar.png",
+								buttonImageOnly : true,
+								buttonText : "",
+								onSelect : function() {
+									var date = new Date($("#dateOfDeposit")
+											.val()), days = parseInt($(
+											"#daysPeriod").val(), 10);
+									var momentDate = moment(date);
+									momentDate.add(days, 'days');
+									var monthperiod = $("#monthsPeriod").val();
+									momentDate.add(monthperiod, 'months');
+									var maturityDatemom = momentDate
+											.format('YYYY-MM-DD');
+									$("#maturityDate").val(maturityDatemom);
+								}
+							}).datepicker("setDate", new Date());
 		});
-		;(function($, window, document, undefined){
-			$("#daysPeriod").on("change", function(){
-							alert($('#daysPeriod').val());
-							alert("Date var:");
-							alert($("#dateOfDeposit").val());
-							var date = new Date($("#dateOfDeposit").val()), 
-								days = parseInt($("#daysPeriod").val(), 10);
-							alert("Date:");
-							alert(date);
-							alert("days:");
-							alert(days);
-							if (!isNaN(date.getTime())) {
-								date.setDate(date.getDate() + days);
-								alert("After days add:"+date.toInputFormat());
+		;
+		(function($, window, document, undefined) {
+			$("#daysPeriod")
+					.on(
+							"change",
+							function() {
+								var date = new Date($("#dateOfDeposit").val()), days = parseInt(
+										$("#daysPeriod").val(), 10);
+								var momentDate = moment(date);
+								momentDate.add(days, 'days');
 								var monthperiod = $("#monthsPeriod").val();
-								alert("monthsPeriod:"+monthperiod);
-								if(parseInt(monthperiod) > 0){
-									date.setMonth(date.getMonth() + monthperiod);
-									alert("date after monthset:"+date);
-									alert("After Months add:"+date.toInputFormat());
-								} 
-								
-								$("#maturityDate").val(date.toInputFormat());
-							} else {
-								alert("Invalid Date");
-							}
-						});
-			$("#monthsPeriod").on("change", function(){
-				alert($('#daysPeriod').val());
-				alert("Date var:");
-				alert($("#dateOfDeposit").val());
-				var date = new Date($("#dateOfDeposit").val()), 
-					days = parseInt($("#daysPeriod").val(), 10);
-				alert("Date:");
-				alert(date);
-				alert("days:");
-				alert(days);
-				if (!isNaN(date.getTime())) {
-					date.setDate(date.getDate() + days);
-					alert("After days add:"+date.toInputFormat());
-					var monthperiod = $("#monthsPeriod").val();
-					alert("monthsPeriod:"+monthperiod);
-					if(parseInt(monthperiod) > 0){
-						date.setMonth(date.getMonth() + monthperiod);
-						alert("date after monthset:"+date);
-						alert("After Months add:"+date.toInputFormat());
-					} 
-					
-					$("#maturityDate").val(date.toInputFormat());
-				} else {
-					alert("Invalid Date");
-				}
-			});
-		 Date.prototype.toInputFormat = function() {
-		       var yyyy = this.getFullYear().toString();
-		       alert("yyyy:"+yyyy);
-		       var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
-		       alert("mm:"+mm);
-		       var dd  = this.getDate().toString();
-		       alert("dd:"+dd);
-		       return yyyy + "-" + (mm[1]?mm:"0"+mm[0]) + "-" + (dd[1]?dd:"0"+dd[0]); // padding
-		    };
+								momentDate.add(monthperiod, 'months');
+								var maturityDatemom = momentDate
+										.format('YYYY-MM-DD');
+								$("#maturityDate").val(maturityDatemom);
+							});
+			$("#monthsPeriod")
+					.on(
+							"change",
+							function() {
+								var date = new Date($("#dateOfDeposit").val()), days = parseInt(
+										$("#daysPeriod").val(), 10);
+								var momentDate = moment(date);
+								momentDate.add(days, 'days');
+								var monthperiod = $("#monthsPeriod").val();
+								momentDate.add(monthperiod, 'months');
+								var maturityDatemom = momentDate
+										.format('YYYY-MM-DD');
+								$("#maturityDate").val(maturityDatemom);
+							});
 		})(jQuery, this, document);
+		
+		$(document).ready(function() {
+			$('#membershipIdsug').autocomplete({
+				serviceUrl: '${pageContext.request.contextPath}/getmembershipsuggestion',
+				paramName: "searchValue",
+				delimiter: ",",
+				onSelect: function(suggestion) {
+		            memId = suggestion.data;
+		            memname = suggestion.name;
+		            memaccno = suggestion.accno;
+		            $("#membershipId").val(memId);
+		            $("#memid").append("  :  ").append(memId);
+		            $("#memAccNo").append("  :  ").append(memaccno);
+		            $("#memName").append("  :  ").append(memname);
+		            return false;
+		        },
+			    transformResult: function(response) {
+			        return {
+			            suggestions: $.map($.parseJSON(response), function(item) {
+			            	
+			                return { value: item.memDispName, data: item.membershipId, name: item.membershipName , accno: item.membershipAcctNum };
+			            })
+			            
+			        };
+			        
+			    }
+			    
+			});
+			
+			
+		});
 	</script>
 
 	<style type="text/css">
@@ -576,6 +644,10 @@ select:-moz-focusring {
 .headcount-table thead tr th, .headcount-table thead tr td {
 	text-align: center;
 }
+.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
+.autocomplete-suggestion { padding: 5px 5px; white-space: nowrap; overflow: hidden; font-size:22px}
+.autocomplete-selected { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: bold; color: #3399FF; }
 </style>
 
 

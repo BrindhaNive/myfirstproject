@@ -6,6 +6,7 @@ public class SchemeTypeDetails {
 	private int acctTypId;
 	private String schemeCode;
 	private String schemeDesc;
+	private String processingType;
 
 	public int getSchTypId() {
 		return schTypId;
@@ -39,6 +40,14 @@ public class SchemeTypeDetails {
 		this.schemeDesc = schemeDesc;
 	}
 
+	public String getProcessingType() {
+		return processingType;
+	}
+
+	public void setProcessingType(String processingType) {
+		this.processingType = processingType;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -50,6 +59,8 @@ public class SchemeTypeDetails {
 		builder.append(schemeCode);
 		builder.append(", schemeDesc=");
 		builder.append(schemeDesc);
+		builder.append(", processingType=");
+		builder.append(processingType);
 		builder.append("]");
 		return builder.toString();
 	}

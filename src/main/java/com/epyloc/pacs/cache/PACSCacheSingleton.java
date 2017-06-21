@@ -28,6 +28,7 @@ public class PACSCacheSingleton implements Relodable {
 	private Map<Integer, Map<Integer, String>> StatTypIdStatIdMap;
 	private Map<Integer, String> roleMap;
 	private Map<Integer, Map<Integer, String>> acctIdSchemeMap;
+	private Map<Integer, String> schemeProcMap;
 	private Map<String, Integer> acctDescIdMap;
 	private Map<Integer, String> acctIdDescMap;
 
@@ -83,8 +84,11 @@ public class PACSCacheSingleton implements Relodable {
 
 	private void populateSchemeDtls() {
 		PACSCacheWrapper pacsCacheWrapper = (PACSCacheWrapper) ApplicationContextProvider.getApplicationContext().getBean("pacsCacheWrapper");
-		acctIdSchemeMap = pacsCacheWrapper.populateSchemeDtls();
+		Pair<Map<Integer, Map<Integer, String>>, Map<Integer, String>> schemePair = pacsCacheWrapper.populateSchemeDtls();
+		acctIdSchemeMap = schemePair.getFirstObject();
+		schemeProcMap = schemePair.getSecondObject();
 		logger.debug("acctIdSchemeMap:" + acctIdSchemeMap);
+		logger.debug("schemeProcMap:" + schemeProcMap);
 	}
 
 	public void populateStatusDetails() throws PacsCriticalException {
@@ -112,7 +116,7 @@ public class PACSCacheSingleton implements Relodable {
 
 	public Integer getStatusIdbyStatusTypeIDandStatusDesc(Integer statusTypeId, String statusDesc) {
 		if (StatTypIdStatDescMap.get(statusTypeId) != null) {
-			return StatTypIdStatDescMap.get(statusDtlMap.get(statusTypeId)).get(statusDesc);
+			return StatTypIdStatDescMap.get(statusTypeId).get(statusDesc);
 		}
 		return null;
 	}
@@ -138,5 +142,9 @@ public class PACSCacheSingleton implements Relodable {
 
 	public Map<Integer, String> getScheDtlsbyAcctId(Integer acctId) {
 		return acctIdSchemeMap.get(acctId);
+	}
+
+	public String getProcTypeBySchemeTypID(Integer schemeTypeId) {
+		return schemeProcMap.get(schemeTypeId);
 	}
 }

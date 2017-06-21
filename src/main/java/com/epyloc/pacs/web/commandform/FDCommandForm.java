@@ -1,5 +1,8 @@
 package com.epyloc.pacs.web.commandform;
 
+import java.util.List;
+
+import com.epyloc.pacs.web.values.FDTxnDet;
 import com.epyloc.pacs.web.values.FdAmountDetails;
 import com.epyloc.pacs.web.values.FdMembershipDetails;
 import com.epyloc.pacs.web.values.FdNomineeDetails;
@@ -65,11 +68,11 @@ public class FDCommandForm {
 		this.fdMembershipDetails.setMembershipAcctNum(membershipAcctNum);
 	}
 
-	public String getMembershipId() {
+	public Integer getMembershipId() {
 		return this.fdMembershipDetails.getMembershipId();
 	}
 
-	public void setMembershipId(String membershipId) {
+	public void setMembershipId(Integer membershipId) {
 		this.fdMembershipDetails.setMembershipId(membershipId);
 	}
 
@@ -145,6 +148,22 @@ public class FDCommandForm {
 		this.fdNomineeDetails.setAadharId(aadharId);
 	}
 
+	public int getFdId() {
+		return this.fdAmountDetails.getFdId();
+	}
+
+	public void setFdId(int fdId) {
+		this.fdAmountDetails.setFdId(fdId);
+	}
+
+	public String getFdAccountId() {
+		return this.fdAmountDetails.getFdAccountId();
+	}
+
+	public void setFdAccountId(String fdAccountId) {
+		this.fdAmountDetails.setFdAccountId(fdAccountId);
+	}
+
 	public String getPrincipalAmt() {
 		return this.fdAmountDetails.getPrincipalAmt();
 	}
@@ -210,6 +229,29 @@ public class FDCommandForm {
 	public void setRateOfInterest(String rateOfInterest) {
 		this.fdAmountDetails.setRateOfInterest(rateOfInterest);
 		;
+	}
+
+	public List<FDTxnDet> getFdTxnDet() {
+		return this.fdAmountDetails.getFdTxnDet();
+	}
+
+	public void setFdTxnDet(List<FDTxnDet> fdTxnDet) {
+		this.fdAmountDetails.setFdTxnDet(fdTxnDet);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("FDCommandForm [fdMembershipDetails=");
+		builder.append(fdMembershipDetails);
+		builder.append(", fdNomineeDetails=");
+		builder.append(fdNomineeDetails);
+		builder.append(", fdAmountDetails=");
+		builder.append(fdAmountDetails);
+		builder.append(", selectedFdSchemeTypeId=");
+		builder.append(selectedFdSchemeTypeId);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

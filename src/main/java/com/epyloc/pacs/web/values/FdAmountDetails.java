@@ -1,7 +1,11 @@
 package com.epyloc.pacs.web.values;
 
+import java.util.List;
+
 public class FdAmountDetails {
 
+	private int fdId;
+	private String fdAccountId;
 	private String principalAmt;
 	private String dateOfDeposit;
 	private String maturityDate;
@@ -10,6 +14,24 @@ public class FdAmountDetails {
 	private String monthsPeriod;
 	private String maturityAmount;
 	private String rateOfInterest;
+	private List<FDTxnDet> fdTxnDet;
+
+	
+	public int getFdId() {
+		return fdId;
+	}
+
+	public void setFdId(int fdId) {
+		this.fdId = fdId;
+	}
+
+	public String getFdAccountId() {
+		return fdAccountId;
+	}
+
+	public void setFdAccountId(String fdAccountId) {
+		this.fdAccountId = fdAccountId;
+	}
 
 	public String getPrincipalAmt() {
 		return principalAmt;
@@ -75,10 +97,18 @@ public class FdAmountDetails {
 		this.rateOfInterest = rateOfInterest;
 	}
 
+	public List<FDTxnDet> getFdTxnDet() {
+		return fdTxnDet;
+	}
+
+	public void setFdTxnDet(List<FDTxnDet> fdTxnDet) {
+		this.fdTxnDet = fdTxnDet;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("FdDepositInstallmentDetails [principalAmt=");
+		builder.append("FdAmountDetails [principalAmt=");
 		builder.append(principalAmt);
 		builder.append(", dateOfDeposit=");
 		builder.append(dateOfDeposit);
@@ -94,6 +124,8 @@ public class FdAmountDetails {
 		builder.append(maturityAmount);
 		builder.append(", rateOfInterest=");
 		builder.append(rateOfInterest);
+		builder.append(", fdTxnDet=");
+		builder.append(fdTxnDet);
 		builder.append("]");
 		return builder.toString();
 	}

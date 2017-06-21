@@ -67,18 +67,23 @@ public class PACSCacheWrapper {
 		return roleMap;
 	}
 
-	public Map<Integer, Map<Integer, String>> populateSchemeDtls() {
+	public Pair<Map<Integer, Map<Integer, String>>, Map<Integer, String>> populateSchemeDtls() {
 		List<SchemeTypeDetails> schemeDtlList = cacheDataAccessor.getSchemeDtls();
-
+		Pair<Map<Integer, Map<Integer, String>>, Map<Integer, String>> pair = getSchemePairObject();
 		Map<Integer, Map<Integer, String>> acctSchemeDtlMap = new HashMap<Integer, Map<Integer, String>>();
+		Map<Integer, String> schemeProcMap = new HashMap<Integer, String>();
 		for (SchemeTypeDetails schemeTypeDtls : schemeDtlList) {
 
 			if (acctSchemeDtlMap.get(schemeTypeDtls.getAcctTypId()) == null) {
 				acctSchemeDtlMap.put(schemeTypeDtls.getAcctTypId(), new HashMap<Integer, String>());
 			}
+			schemeProcMap.put(schemeTypeDtls.getSchTypId(), schemeTypeDtls.getProcessingType());
 			acctSchemeDtlMap.get(schemeTypeDtls.getAcctTypId()).put(schemeTypeDtls.getSchTypId(), schemeTypeDtls.getSchemeDesc());
+
 		}
-		return acctSchemeDtlMap;
+		pair.setFirstObject(acctSchemeDtlMap);
+		pair.setSecondObject(schemeProcMap);
+		return pair;
 	}
 
 	public Pair<Map<String, Integer>, Map<Integer, String>> populateAcctTypeList() {
@@ -122,6 +127,36 @@ public class PACSCacheWrapper {
 			@Override
 			public Map<Integer, String> getSecondObject() {
 				return acctTypeIdMap;
+			}
+
+		};
+		return pairImpl;
+	}
+
+	public static Pair<Map<Integer, Map<Integer, String>>, Map<Integer, String>> getSchemePairObject() {
+		Pair<Map<Integer, Map<Integer, String>>, Map<Integer, String>> pairImpl = new Pair<Map<Integer, Map<Integer, String>>, Map<Integer, String>>() {
+			private Map<Integer, Map<Integer, String>> acctSchemeDtlMap = new HashMap<Integer, Map<Integer, String>>();
+			private Map<Integer, String> schemeProcMap = new HashMap<Integer, String>();
+
+			@Override
+			public void setFirstObject(Map<Integer, Map<Integer, String>> t) {
+				acctSchemeDtlMap = t;
+			}
+
+			@Override
+			public Map<Integer, Map<Integer, String>> getFirstObject() {
+				return acctSchemeDtlMap;
+			}
+
+			@Override
+			public void setSecondObject(Map<Integer, String> v) {
+				schemeProcMap = v;
+
+			}
+
+			@Override
+			public Map<Integer, String> getSecondObject() {
+				return schemeProcMap;
 			}
 
 		};
