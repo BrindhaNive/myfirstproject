@@ -2,9 +2,9 @@ package com.epyloc.pacs.dao;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -29,21 +29,28 @@ public class PACSDao {
 
 	private static final Logger logger = Logger.getLogger(PACSDao.class);
 
+	public SqlSessionTemplate getsessionTemplate() {
+		try {
+			return new SqlSessionTemplate(sessionFactory);
+		} catch (Exception e) {
+			logger.error("Error during SQL session creation:", e);
+		}
+		return null;
+	}
+
 	public UserDetails getUserDetails(String username) {
-		SqlSession session = sessionFactory.openSession();
-		UserDetailsMapper maper = session.getMapper(UserDetailsMapper.class);
+		UserDetailsMapper maper = getsessionTemplate().getMapper(UserDetailsMapper.class);
 		return maper.userDetails(username);
 	}
 
 	public List<Priv> getPrivbyRoleId(int roleId) {
-		SqlSession session = sessionFactory.openSession();
-		PrivMapper maper = session.getMapper(PrivMapper.class);
+		PrivMapper maper = getsessionTemplate().getMapper(PrivMapper.class);
 		return maper.getPrivDetails(roleId);
 	}
 
 	public String getSchemeROIbyType(int schmeTypeID) {
-		SqlSession session = sessionFactory.openSession();
-		ROIMapper maper = session.getMapper(ROIMapper.class);
+
+		ROIMapper maper = getsessionTemplate().getMapper(ROIMapper.class);
 		return maper.getROIDetails(schmeTypeID);
 	}
 
@@ -51,8 +58,8 @@ public class PACSDao {
 		logger.debug("Inside get prefix");
 		logger.debug("bankid:" + bankid);
 		logger.debug("schemeTypeId:" + schemeTypeId);
-		SqlSession session = sessionFactory.openSession();
-		SchemeDtlsMapper maper = session.getMapper(SchemeDtlsMapper.class);
+
+		SchemeDtlsMapper maper = getsessionTemplate().getMapper(SchemeDtlsMapper.class);
 		PrefixDet prefixDet = maper.getPrefixCodeAcc(bankid, schemeTypeId);
 		logger.debug("prefixDet:" + prefixDet.getPrefixCode());
 		logger.debug("prefixDet:" + prefixDet.getAccCounter());
@@ -67,8 +74,8 @@ public class PACSDao {
 	public Integer persistFDmaster(FDCommandForm fdCommandForm, int bankid, int bankUserID, int fdStatus) {
 		Integer persistId = null;
 		try {
-			SqlSession session = sessionFactory.openSession();
-			FixedDepositMapper maper = session.getMapper(FixedDepositMapper.class);
+
+			FixedDepositMapper maper = getsessionTemplate().getMapper(FixedDepositMapper.class);
 			persistId = maper.insertFDMaster(fdCommandForm.getFdMembershipDetails(), fdCommandForm.getFdAmountDetails(), bankid, bankUserID, fdStatus);
 			logger.debug("FD_ID:" + fdCommandForm.getFdId());
 		} catch (Exception e) {
@@ -81,8 +88,8 @@ public class PACSDao {
 	public Integer persistFDNominee(FDCommandForm fdCommandForm) {
 		Integer persistId = null;
 		try {
-			SqlSession session = sessionFactory.openSession();
-			FixedDepositMapper maper = session.getMapper(FixedDepositMapper.class);
+
+			FixedDepositMapper maper = getsessionTemplate().getMapper(FixedDepositMapper.class);
 			persistId = maper.insertFDNominee(fdCommandForm.getFdId(), fdCommandForm.getFdNomineeDetails());
 			logger.debug("FD_ID:" + fdCommandForm.getFdAmountDetails().getFdId());
 		} catch (Exception e) {
@@ -95,8 +102,7 @@ public class PACSDao {
 	public Integer persistFDtxnDtl(int fdID, int fdTxnStatus, FDTxnDet fdTxnDet) {
 		Integer persistID = null;
 		try {
-			SqlSession session = sessionFactory.openSession();
-			FixedDepositMapper maper = session.getMapper(FixedDepositMapper.class);
+			FixedDepositMapper maper = getsessionTemplate().getMapper(FixedDepositMapper.class);
 			persistID = maper.insertFDTxnDtls(fdID, fdTxnStatus, fdTxnDet);
 			logger.debug("FD_TXN_ID:" + fdTxnDet.getFdTxnId());
 		} catch (Exception e) {
@@ -107,11 +113,10 @@ public class PACSDao {
 	}
 
 	public List<FdMembershipDetails> getMemSuggestions(String searchValue) {
-		SqlSession session = sessionFactory.openSession();
-		FixedDepositMapper maper = session.getMapper(FixedDepositMapper.class);
-		logger.debug("searchValue b:"+searchValue);
-		searchValue="%"+searchValue+"%";
-		logger.debug("searchValue a:"+searchValue);
+		FixedDepositMapper maper = getsessionTemplate().getMapper(FixedDepositMapper.class);
+		logger.debug("searchValue b:" + searchValue);
+		searchValue = "%" + searchValue + "%";
+		logger.debug("searchValue a:" + searchValue);
 		return maper.getMemSuggestions(searchValue);
 	}
 

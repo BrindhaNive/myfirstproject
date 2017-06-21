@@ -1,6 +1,5 @@
 package com.epyloc.pacs.web.controller;
 
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -22,8 +21,6 @@ import com.epyloc.pacs.web.commandform.BaseCommandForm;
 public class LoginController {
 
 	private static final Logger logger = Logger.getLogger(LoginController.class);
-	@Autowired
-	public SqlSessionFactory sessionFactory;
 
 	@Autowired
 	PACSCommonManager pacsCommonManager;
