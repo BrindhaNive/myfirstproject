@@ -11,6 +11,7 @@
 				$('#gender').val(7);
 			} else {
 				$('#gender').val(6);
+				
 			}
 		});
 

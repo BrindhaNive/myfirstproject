@@ -37,9 +37,7 @@
 														<h4 class="panel-title">Membership</h4>
 													</div>
 													<div class="panel-body">
-														<!-- TO DO : Replace with Spring form -->
-														<form:form class="form-horizontal" id="addMemberCommandForm" modelAttribute="addMemberCommandForm" commandName="addMemberCommandForm" method="post" name="addMemberCommandForm" action="register">
-
+														<form:form class="form-horizontal" id="addMemberCommandForm" modelAttribute="addMemberCommandForm" commandName="addMemberCommandForm" method="post" name="addMemberCommandForm" action="membership">
 															<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 																<div class="panel panel-primary">
 																	<div class="panel-heading" role="tab" id="headingOne">
@@ -47,27 +45,33 @@
 																			<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"> Personal Details </a>
 																		</h4>
 																	</div>
-																	<div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+																	<div id="collapseOne" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingOne">
 																		<div class="panel-body">
 																			<div class="col-md-12 col-sm-12">
 																				<div class="form-group col-md-6 col-sm-6">
 																					<label class="control-label">Membership Type</label>
-																					<form:select path="membershipType" class="form-control dropdown" id="membershipType">
-																						<form:option value="0" label="--- Select ---" />
+																					<form:select path="membershipType" class="form-control dropdown input-sm" id="membershipType" name="">
+																						<form:option value="" label="--- Select ---" />
 																						<form:options items="${memberTypeMap}" />
 																					</form:select>
+																					<div class="has-error">
+																						<form:errors path="membershipType" class="help-inline" />
+																					</div>
 																				</div>
 																				<div class="form-group col-md-6 col-sm-6">
 																					<label class="control-label">Salutation</label>
-																					<form:select path="salutation" class="form-control dropdown" id="salutation">
-																						<form:option value="0" label="--- Select ---" />
+																					<form:select path="salutation" class="form-control dropdown input-sm" id="salutation">
+																						<form:option value="" label="--- Select ---" />
 																						<form:options items="${salutationMap}" />
 																					</form:select>
+																					<div class="has-error">
+																						<form:errors path="salutation" class="help-inline" />
+																					</div>
 																				</div>
 
 																				<div class="form-group col-md-6 col-sm-6">
 																					<label for="membername">Member Name*</label>
-																					<form:input type="text" class="form-control" path="memberName" id="memberName" />
+																					<form:input type="text" class="form-control input-sm" path="memberName" id="memberName" />
 																					<div class="has-error">
 																						<form:errors path="memberName" class="help-inline" />
 																					</div>
@@ -75,7 +79,7 @@
 
 																				<div class="form-group col-md-6 col-sm-6">
 																					<label for="surname">Member SurName*</label>
-																					<form:input type="text" class="form-control" path="surName" id="surName" />
+																					<form:input type="text" class="form-control input-sm" path="surName" id="surName" />
 																					<div class="has-error">
 																						<form:errors path="surName" class="help-inline" />
 																					</div>
@@ -84,91 +88,115 @@
 																				<div class="form-group col-md-6 col-sm-6">
 																					<label class="control-label">Gender</label>
 																					<form:select path="gender" class="form-control dropdown input-sm" id="gender">
-																						<form:option value="0" label="--- Select ---" />
+																						<form:option value="" label="--- Select ---" />
 																						<form:options items="${genderMap}" />
 																					</form:select>
-																				</div>
-
-																				<div class="form-group col-md-6 col-sm-6">
-																					<label for="fatherOrHusbandName">Father/Husband Name*</label>
-																					<form:input type="text" class="form-control" path="fatherOrHusbandName" id="fatherOrHusbandName" />
 																					<div class="has-error">
-																						<form:errors path="fatherOrHusbandName" class="help-inline" />
+																						<form:errors path="gender" class="help-inline" />
 																					</div>
 																				</div>
 
 																				<div class="form-group col-md-6 col-sm-6">
+																					<label for="fatherName">Father Name</label>
+																					<form:input type="text" class="form-control input-sm" path="fatherName" id="fatherName" />
+																					<div class="has-error">
+																						<form:errors path="fatherName" class="help-inline" />
+																					</div>
+																				</div>
+																				
+																				<div class="form-group col-md-6 col-sm-6">
+																					<label for="husbandName">Husband Name</label>
+																					<form:input type="text" class="form-control input-sm" path="husbandName" id="husbandName" />
+																				</div>
+
+																				<div class="form-group col-md-6 col-sm-6">
 																					<label for="yearsPicker">Date of Birth</label>
-																					<form:input type="text" class="form-control" path="dateOfBirth" id="datepicker" />
+																					<form:input type="text" class="form-control input-sm" path="dateOfBirth" id="datepicker" />
+																					<div class="has-error">
+																						<form:errors path="dateOfBirth" class="help-inline" />
+																					</div>
 																				</div>
 
 																				<div class="form-group col-md-6 col-sm-6">
 																					<label class="control-label">Staff</label>
-																					<form:select path="staff" class="form-control dropdown" id="staff">
-																						<form:option value="0" label="--- Select ---" />
+																					<form:select path="staff" class="form-control dropdown input-sm" id="staff">
+																						<form:option value="" label="--- Select ---" />
 																						<form:options items="${staffMap}" />
 																					</form:select>
 																				</div>
 
 																				<div class="form-group col-md-6 col-sm-6">
 																					<label for="employeeNumber">Employee number*</label>
-																					<form:input type="text" path="employeeNumber" class="form-control" id="employeeNumber" />
+																					<form:input type="text" path="employeeNumber" class="form-control input-sm" id="employeeNumber" />
 																				</div>
 
 																				<div class="form-group col-md-6 col-sm-6">
 																					<label class="control-label">Senior citizen</label>
-																					<form:select path="seniorCitizen" class="form-control dropdown" id="seniorCitizen">
-																						<form:option value="0" label="--- Select ---" />
-																						<form:options items="${seniorCitizenMap}"/>
+																					<form:select path="seniorCitizen" class="form-control dropdown input-sm" id="seniorCitizen">
+																						<form:option value="" label="--- Select ---" />
+																						<form:options items="${seniorCitizenMap}" />
 																					</form:select>
 																				</div>
 
 																				<div class="form-group col-md-6 col-sm-6">
 																					<label class="control-label">Senior citizen proof</label>
-																					<form:select path="seniorCitizenProof" class="form-control dropdown" id="seniorCitizenProof">
-																						<form:option value="0" label="--- Select ---" />
+																					<form:select path="seniorCitizenProof" class="form-control dropdown input-sm" id="seniorCitizenProof">
+																						<form:option value="" label="--- Select ---" />
 																						<form:options items="${proofMap}" />
 																					</form:select>
 																				</div>
 
 																				<div class="form-group col-md-6 col-sm-6">
 																					<label class="control-label">Occupation</label>
-																					<form:select path="occupation" class="form-control dropdown" id="occupation">
-																						<form:option value="0" label="--- Select ---" />
+																					<form:select path="occupation" class="form-control dropdown input-sm" id="occupation">
+																						<form:option value="" label="--- Select ---" />
 																						<form:options items="${occupationMap}" />
 																					</form:select>
 																				</div>
 
 																				<div class="form-group col-md-6 col-sm-6">
 																					<label class="control-label">Religion</label>
-																					<form:select path="religion" class="form-control dropdown" id="religion">
-																						<form:option value="0" label="--- Select ---" />
+																					<form:select path="religion" class="form-control dropdown input-sm" id="religion">
+																						<form:option value="" label="--- Select ---" />
 																						<form:options items="${religionMap}" />
 																					</form:select>
 																				</div>
 
 																				<div class="form-group col-md-6 col-sm-6">
 																					<label class="control-label">Category</label>
-																					<form:select path="category" class="form-control dropdown" id="category">
-																						<form:option value="0" label="--- Select ---" />
+																					<form:select path="category" class="form-control dropdown input-sm" id="category">
+																						<form:option value="" label="--- Select ---" />
 																						<form:options items="${categoryMap}" />
 																					</form:select>
 																				</div>
 
 																				<div class="form-group col-md-6 col-sm-6">
 																					<label for="noOfAcres">Total Acres*</label>
-																					<form:input type="text" path="acres" class="form-control" id="acres" />
-																					<div class="has-error">
-																						<form:errors path="acres" class="help-inline" />
-																					</div>
+																					<form:input type="text" path="acres" class="form-control input-sm" id="acres" />
 																				</div>
 
 																				<div class="form-group col-md-6 col-sm-6">
 																					<label class="control-label">Type of farmer</label>
-																					<form:select path="typeOfFarmer" class="form-control dropdown" id="typeOfFarmer">
-																						<form:option value="0" label="--- Select ---" />
+																					<form:select path="typeOfFarmer" class="form-control dropdown input-sm" id="typeOfFarmer">
+																						<form:option value="" label="--- Select ---" />
 																						<form:options items="${typeOfFarmerMap}" />
 																					</form:select>
+																				</div>
+
+																				<div class="form-group col-md-6 col-sm-6">
+																					<label for="shareAmt">Share Amount</label>
+																					<form:input type="text" path="shareAmt" class="form-control input-sm" id="shareAmt" />
+																				</div>
+
+																				<div class="form-group col-md-6 col-sm-6">
+																					<label class="control-label">Share Type</label>
+																					<form:select path="shareType" class="form-control dropdown input-sm" id="shareType">
+																						<form:option value="" label="--- Select ---" />
+																						<form:options items="${typeOfShareMap}" />
+																					</form:select>
+																					<div class="has-error">
+																						<form:errors path="shareType" class="help-inline" />
+																					</div>
 																				</div>
 																			</div>
 																		</div>
@@ -177,7 +205,7 @@
 																<div class="panel panel-primary">
 																	<div class="panel-heading" role="tab" id="headingTwo">
 																		<h4 class="panel-title">
-																			<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"> Share holder Details </a>
+																			<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"> Address </a>
 																		</h4>
 																	</div>
 																	<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
@@ -187,7 +215,7 @@
 																<div class="panel panel-primary">
 																	<div class="panel-heading" role="tab" id="headingThree">
 																		<h4 class="panel-title">
-																			<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree"> Address </a>
+																			<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree"> KYM Details </a>
 																		</h4>
 																	</div>
 																	<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
@@ -197,7 +225,7 @@
 																<div class="panel panel-primary">
 																	<div class="panel-heading" role="tab" id="headingFour">
 																		<h4 class="panel-title">
-																			<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour"> KYM Details </a>
+																			<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour"> Nominee Details </a>
 																		</h4>
 																	</div>
 																	<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
@@ -206,32 +234,8 @@
 																			excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div>
 																	</div>
 																</div>
-																<div class="panel panel-primary">
-																	<div class="panel-heading" role="tab" id="headingFive">
-																		<h4 class="panel-title">
-																			<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive"> Legal Heir Details </a>
-																		</h4>
-																	</div>
-																	<div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
-																		<div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-																			eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
-																			excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div>
-																	</div>
-																</div>
-																<div class="panel panel-primary">
-																	<div class="panel-heading" role="tab" id="headingSix">
-																		<h4 class="panel-title">
-																			<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix"> Other Details </a>
-																		</h4>
-																	</div>
-																	<div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
-																		<div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-																			eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
-																			excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div>
-																	</div>
-																</div>
 															</div>
-															<input type="submit" value="Submit" />
+															<input class="primary" type="submit" value="Submit" />
 														</form:form>
 													</div>
 												</div>

@@ -7,7 +7,7 @@ package com.epyloc.pacs.constants;
 public enum MembershipOptionsEnum {
 	
 	MEMBERTYPE("MEMBER_TYPE", 1), SALUTATION("SALUTATION", 2), GENDER("GENDER", 3), STAFF("STAFF", 4), SENIORCITIZEN("SENIOR_CITIZEN", 5), PROOF("PROOF", 6), OCCUPATION("OCCUPATION", 7), RELIGION("RELIGION", 8), CATEGORY("CATEGORY",
-			9), TOF("TYPE_OF_FARMER", 10);
+			9), TOF("TYPE_OF_FARMER", 10),TOS("TYPE_OF_SHARE",11);
 	private String value;
 	private int code;
 

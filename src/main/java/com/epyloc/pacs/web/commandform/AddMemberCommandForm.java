@@ -1,149 +1,222 @@
 package com.epyloc.pacs.web.commandform;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Date;
 
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.format.annotation.DateTimeFormat;
-
 public class AddMemberCommandForm {
-	
-	@Size(min=1, max=1)@NotEmpty
-	private String membershipType;
-	@Size(min=1, max=1)@NotEmpty
-	private String salutation;
-	@Size(min=1, max=1)@NotEmpty
-	private String gender;
-	@Size(min=1, max=1)@NotEmpty
-	private String staff;
-	@Size(min=3, max=30)@NotEmpty
+	private BigInteger generatedId;
+	private BigInteger membershipId;
+	@NotNull
+	private Integer membershipType;
+	@NotNull
+	private Integer salutation;
+	@NotNull
+	private Integer gender;
+	@NotNull
+	private Integer staff;
+	@Size(min = 3, max = 30)
 	private String memberName;
-	@Size(min=3, max=30)@NotEmpty
+	@Size(min = 3, max = 30)
 	private String surName;
-	@Size(min=3, max=30)@NotEmpty
-	private String fatherOrHusbandName;
+	@Size(min = 3, max = 30)
+	private String fatherName;
+	private String husbandName;
 	private String employeeNumber;
-	private String seniorCitizen;
-	private String seniorCitizenProof;
-	private String occupation;
-	private String religion;
-	private String category;
-	private String typeOfFarmer;
-	@DateTimeFormat(pattern="MM/dd/yyyy")
-    @Past @NotNull
+	private Integer seniorCitizen;
+	private Integer seniorCitizenProof;
+	private Integer occupation;
+	private Integer religion;
+	private Integer category;
+	private Integer typeOfFarmer;
+	@Past
 	private Date dateOfBirth;
-	@Digits(fraction = 0, integer = 2,message="jbakbkabskbk kaskaisgui kasgigausig")
-	private Integer acres;
-	
-	public String getMembershipType() {
+	private BigDecimal acres;
+	private BigDecimal shareAmt;
+	@NotNull
+	private Integer shareType;
+
+	public BigInteger getGeneratedId() {
+		return generatedId;
+	}
+
+	public void setGeneratedId(BigInteger generatedId) {
+		this.generatedId = generatedId;
+	}
+
+	public BigInteger getMembershipId() {
+		return membershipId;
+	}
+
+	public void setMembershipId(BigInteger membershipId) {
+		this.membershipId = membershipId;
+	}
+
+	public Integer getMembershipType() {
 		return membershipType;
 	}
-	public void setMembershipType(String membershipType) {
+
+	public void setMembershipType(Integer membershipType) {
 		this.membershipType = membershipType;
 	}
-	public String getSalutation() {
+
+	public Integer getSalutation() {
 		return salutation;
 	}
-	public void setSalutation(String salutation) {
+
+	public void setSalutation(Integer salutation) {
 		this.salutation = salutation;
 	}
-	public String getGender() {
+
+	public Integer getGender() {
 		return gender;
 	}
-	public void setGender(String gender) {
+
+	public void setGender(Integer gender) {
 		this.gender = gender;
 	}
-	public String getStaff() {
+
+	public Integer getStaff() {
 		return staff;
 	}
-	public void setStaff(String staff) {
+
+	public void setStaff(Integer staff) {
 		this.staff = staff;
 	}
+
 	public String getMemberName() {
 		return memberName;
 	}
+
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
 	}
+
 	public String getSurName() {
 		return surName;
 	}
+
 	public void setSurName(String surName) {
 		this.surName = surName;
 	}
-	public String getFatherOrHusbandName() {
-		return fatherOrHusbandName;
+
+	public String getFatherName() {
+		return fatherName;
 	}
-	public void setFatherOrHusbandName(String fatherOrHusbandName) {
-		this.fatherOrHusbandName = fatherOrHusbandName;
+
+	public void setFatherName(String fatherName) {
+		this.fatherName = fatherName;
 	}
+
+	public String getHusbandName() {
+		return husbandName;
+	}
+
+	public void setHusbandName(String husbandName) {
+		this.husbandName = husbandName;
+	}
+
 	public String getEmployeeNumber() {
 		return employeeNumber;
 	}
+
 	public void setEmployeeNumber(String employeeNumber) {
 		this.employeeNumber = employeeNumber;
 	}
-	public String getSeniorCitizen() {
+
+	public Integer getSeniorCitizen() {
 		return seniorCitizen;
 	}
-	public void setSeniorCitizen(String seniorCitizen) {
+
+	public void setSeniorCitizen(Integer seniorCitizen) {
 		this.seniorCitizen = seniorCitizen;
 	}
-	public String getSeniorCitizenProof() {
+
+	public Integer getSeniorCitizenProof() {
 		return seniorCitizenProof;
 	}
-	public void setSeniorCitizenProof(String seniorCitizenProof) {
+
+	public void setSeniorCitizenProof(Integer seniorCitizenProof) {
 		this.seniorCitizenProof = seniorCitizenProof;
 	}
-	public String getOccupation() {
+
+	public Integer getOccupation() {
 		return occupation;
 	}
-	public void setOccupation(String occupation) {
+
+	public void setOccupation(Integer occupation) {
 		this.occupation = occupation;
 	}
-	public String getReligion() {
+
+	public Integer getReligion() {
 		return religion;
 	}
-	public void setReligion(String religion) {
+
+	public void setReligion(Integer religion) {
 		this.religion = religion;
 	}
-	public String getCategory() {
+
+	public Integer getCategory() {
 		return category;
 	}
-	public void setCategory(String category) {
+
+	public void setCategory(Integer category) {
 		this.category = category;
 	}
-	public String getTypeOfFarmer() {
+
+	public Integer getTypeOfFarmer() {
 		return typeOfFarmer;
 	}
-	public void setTypeOfFarmer(String typeOfFarmer) {
+
+	public void setTypeOfFarmer(Integer typeOfFarmer) {
 		this.typeOfFarmer = typeOfFarmer;
 	}
+
 	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
+
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-	public Integer getAcres() {
+
+	public BigDecimal getAcres() {
 		return acres;
 	}
-	public void setAcres(Integer acres) {
+
+	public void setAcres(BigDecimal acres) {
 		this.acres = acres;
 	}
+
+	public BigDecimal getShareAmt() {
+		return shareAmt;
+	}
+
+	public void setShareAmt(BigDecimal shareAmt) {
+		this.shareAmt = shareAmt;
+	}
+
+	public Integer getShareType() {
+		return shareType;
+	}
+
+	public void setShareType(Integer shareType) {
+		this.shareType = shareType;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("AddMemberCommandForm [membershipType=").append(membershipType).append(", salutation=").append(salutation).append(", gender=").append(gender).append(", staff=").append(staff).append(", memberName=").append(memberName)
-				.append(", surName=").append(surName).append(", fatherOrHusbandName=").append(fatherOrHusbandName).append(", employeeNumber=").append(employeeNumber).append(", seniorCitizen=").append(seniorCitizen).append(", seniorCitizenProof=")
-				.append(seniorCitizenProof).append(", occupation=").append(occupation).append(", religion=").append(religion).append(", category=").append(category).append(", typeOfFarmer=").append(typeOfFarmer).append(", dateOfBirth=")
-				.append(dateOfBirth).append(", acres=").append(acres).append("]");
+		builder.append("AddMemberCommandForm [generatedId=").append(generatedId).append(", membershipId=").append(membershipId).append(", membershipType=").append(membershipType).append(", salutation=").append(salutation).append(", gender=")
+				.append(gender).append(", staff=").append(staff).append(", memberName=").append(memberName).append(", surName=").append(surName).append(", fatherName=").append(fatherName).append(", husbandName=").append(husbandName)
+				.append(", employeeNumber=").append(employeeNumber).append(", seniorCitizen=").append(seniorCitizen).append(", seniorCitizenProof=").append(seniorCitizenProof).append(", occupation=").append(occupation).append(", religion=")
+				.append(religion).append(", category=").append(category).append(", typeOfFarmer=").append(typeOfFarmer).append(", dateOfBirth=").append(dateOfBirth).append(", acres=").append(acres).append(", shareAmt=").append(shareAmt)
+				.append(", shareType=").append(shareType).append("]");
 		return builder.toString();
 	}
-		
-	
+
 }
